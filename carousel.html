@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>CRASOUL</title>
+</head>
+<body>
+    <div class="slide-container h-[100vh] flex justify-center items-center bg-amber-100">
+        <div class="slide  w-[60%] hidden" >
+            <img src="images/image1.jpg" class="w-[100%]" >
+            <!-- <div class=" text-center absolute bottom-0 border-2 border-black">Caption</div> -->
+        </div>
+        <div class="slide  w-[60%] hidden" >
+            <img src="images/image2.jpg" class="w-[100%]" >
+            <!-- <div class=" text-center absolute bottom-0 border-2 border-black">Caption</div> -->
+        </div>
+        <div class="slide hidden" >
+            <img src="images/image3.jpg" class="w-[100%]" >
+            <!-- <div class=" text-center absolute bottom-0 border-2 border-black">Caption</div> -->
+        </div>
+        <div class="slide w-[60%] hidden" >
+            <img src="images/image4.jpg" class="w-[100%]">
+            <!-- <div class=" text-center absolute bottom-0 border-2 border-black">Caption</div> -->
+        </div>
+        <span class="arrow-prev absolute top-[45%] left-[15%] text-xl bg-zinc-300 p-4 rounded-[50%] text-white cursor-pointer" onclick="controller(-1)">&#10094</span>
+        <span class="arrow-next absolute top-[45%] right-[15%] text-xl bg-zinc-300 p-4 rounded-[50%] text-white cursor-pointer" onclick="controller(1)">&#10095</span>
+    </div>
+</body>
+
+<script>
+    //flag
+    let currentslide =0;
+
+    function controller(x){
+        currentslide = currentslide + x;
+        slideshow(currentslide)
+    }
+    
+    slideshow(currentslide);
+
+
+    function slideshow(num){
+        let slides = document.getElementsByClassName('slide');
+
+        if(num == slides.length){
+            currentslide = 0;
+            num = 0;
+        }
+
+        if(num < 0){
+            currentslide = slides.length-1;
+            num = slides.length-1;
+        }
+
+        for(let y of slides){
+            y.classList.add("hidden");
+        }
+        slides[num].classList.remove("hidden");
+    }
+</script>
+</html>
